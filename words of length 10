@@ -1,0 +1,9 @@
+f = open('1.txt')
+f = f.read()
+words = f.split()
+countwords = 0
+for word in words:
+    if len(word) >= 10:
+        countwords += 1
+print (countwords * 100 / len(words))
+            
