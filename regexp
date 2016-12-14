@@ -1,0 +1,51 @@
+import re
+f = open ('1.txt', 'r', encoding = 'utf-8')
+f = f.read()
+words = f.split()
+count = len(words)
+i = 0
+for word in words:
+    if re.search ('[а-яё]', word):
+        i += 1
+if count != i:
+    print (i, count)
+else:
+    print (count)
+print (re.search('[а-яё]', word))
+
+import re
+f = open ('1.txt')
+f = f.read()
+words = f.split()
+for word in words:
+    if re.search ('(б[аоуеиюяёы])', word):
+        res = re.search('(б[аоуеиюяёы])', word)
+        print (res.group(1))
+        
+import re
+f = open ('1.txt')
+f = f.read()
+a = re.findall ('[аоуеиюяэёы]', f)
+print (a)
+
+import re
+f = open ('1.txt', encoding = 'utf-8')
+f = f.read()
+s = re.sub('[а-я]', 'о', f)
+print (s)
+
+import re
+f = open ('1.txt', 'r', encoding = 'utf-8')
+f = f.read()
+words = f.split()
+r = '(\"[A-Za-z]+\")'
+for word in words:
+    if re.search(r, word):
+        res = re.search (r, word)
+        print (res.group(1))
+
+
+
+
+
+
