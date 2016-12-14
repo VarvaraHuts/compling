@@ -1,9 +1,10 @@
 f = open('C:/Python34/readfile.txt')
 lines = f.readlines()
-words = []
+countlines = len(lines)
+countwords = 0
 for line in lines:
-    words.append(line.strip().split(' '))
-average = sum(len(line) for line in words) / len(words)
-print (average)
-
+    words = line.strip()
+    numwords = len(words)
+    countwords += numwords
+print (countwords/countlines)
         
