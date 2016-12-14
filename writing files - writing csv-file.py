@@ -3,22 +3,19 @@ s = input ()
 while True:
     if s == 'stop':
         break
-    x = len(s) - 1
-    i = 0
-    while x - 1 >= i:
-        if s[x - i] == s[i]:
-            a = 'yes'
-            i += 1
+    for i in range (len (s) - 1):
+        if s[i] == s[len(s) - 1 - i]:
+            a = '+ palyndrome'
         else:
-            a = 'no'
-            break
+            a = '- palyndrome'
     if s.endswith ('ed'):
-        b = 'yes'
+        b = '+ verb'
     else:
-        b = 'no'
-    f.write(s + ',' + str(len(s)) + ',' + a + '\n')
+        b = '- verb'
+    f.write(s + ',   ' + str(len(s)) + ',   ' + a + ',   ' + b + '\n')
     s = input ()
 f.close()
+
 
 
 
