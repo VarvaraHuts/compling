@@ -1,8 +1,10 @@
-arr = []
 s = input()
-while len(s) > 0:
-    arr.append(s)
+lst = []
+while s:
+    if len(s) == 0:
+        break
+    lst.append(s)
     s = input()
-arr.reverse()
-for s in arr:
-    print (s)
+lst.reverse()
+for word in lst:
+    print (word, end='\n')
