@@ -1,0 +1,112 @@
+text = 'X-DSPAM-Confidence:    0.8475'
+start = text.find('0')
+end = text.find ('5')
+end += 1
+number = float(text[start + 1:end])
+print (number)
+
+fname = raw_input('Enter file name: ')
+fh = open(fname)
+fh = fh.read()
+for line in fh:
+    line = line.strip()
+fh = fh.upper()
+print (fh)
+
+fname = raw_input('Enter file name: ')
+fh = open(fname)
+fh = fh.readlines()
+keyw = 'X-DSPAM-Confidence'
+count = 0
+numbr = 0
+snumbr = 0
+for line in fh:
+    if keyw in line: 
+        count += 1
+        numbr = float(line[20:26])
+        snumbr += numbr
+res = snumbr / count
+print ('Average spam confidence: ' + str(res))
+
+fh = open('1.txt')
+fh = fh.read()
+fh = fh.split( )
+lst = []
+for word in fh:
+    if word not in lst:
+        lst.append(word)
+    if word in lst:
+        continue
+lst.sort()
+print (lst)
+
+fname = raw_input('Enter file name: ')
+fh = open(fname)
+fh = fh.readlines()
+count = 0
+for line in fh:
+    if 'From ' in line:
+        count +=1
+        line = line.split( )
+        print (line[1])
+print ('There were', count, 'lines in the file with From as the first word')
+
+f = open('1.txt')
+lines = f.readlines()
+lst = []
+for line in lines:
+    if 'From' in line and '2008' in line:
+        line = line.split()
+        lst.append(line[1])
+dic = {}
+for word in lst:
+    if word in dic:
+        dic[word] += 1
+    if word not in dic:
+        dic[word] = 1
+bigword = 0
+bigcount = 0
+for word, count in dic.items():
+    if bigcount is None or count > bigcount:
+        bigword = word
+        bigcount = count
+print (bigword + ' ' + str(bigcount))
+
+count = {}
+names = ['varya', 'roma', 'varya', 'roma', 'akulina']
+for name in names:
+    count[name] = count.get(name, 0) + 1
+print (count)
+
+import re
+f = open('1.txt')
+for line in f:
+    line = line.rsstrip()
+    if re.search ('From', line):
+        print (line)
+
+import re
+s = 'My two favourite numbers are 3 and 13'
+a = re.findall('[0-9]+', s)
+print (a)
+
+import re
+s = 'From: Using the: Character'
+a = re.findall('^F.+?:', s)
+print (a)
+
+import re
+s = 'From varvarahuts@gmail.com Sun Dec 11 2016'
+a = re.findall('\S+@\S+', s)
+print (a)
+
+import re
+f = open('1.txt')
+f = f.read()
+lst = re.findall('[0-9]+', f)
+count = 0
+for num in lst:
+    num = int(num)
+    count += num
+print (count)
+
