@@ -5,13 +5,13 @@ words = f.split()
 count = len(words)
 i = 0
 for word in words:
-    if re.search ('[а-яё]', word):
+    if re.search ('[a-z]', word):
         i += 1
 if count != i:
     print (i, count)
 else:
     print (count)
-print (re.search('[а-яё]', word))
+print (re.search('[a-z]', word))
 
 import re
 f = open ('1.txt')
