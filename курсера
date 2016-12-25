@@ -10,7 +10,7 @@ fh = open(fname)
 fh = fh.read()
 for line in fh:
     line = line.strip()
-fh = fh.upper()
+fh = fh.lower()
 print (fh)
 
 fname = raw_input('Enter file name: ')
