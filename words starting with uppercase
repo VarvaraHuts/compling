@@ -1,6 +1,7 @@
 f = open('1.txt')
-f = f.read()
-words = f.split()
+f1 = f.read()
+f.close()
+words = f1.split()
 countwords = 0
 for word in words:
     letter = word[0]
