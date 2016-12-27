@@ -12,7 +12,7 @@ for fname in os.listdir('tolstoy'):
     dic_kir = {'a':'а', 'c':'с', 'e':'е', 'o':'о', 'p':'р', 'x':'х',
             'A':'А', 'B':'В', 'C':'С', 'E':'Е', 'H':'Н', 'O':'О',
             'P':'Р', 'T':'Т', 'X':'Х'}
-    delimiters = ".", ",", ";", ":", "«", "»", "-", "?", "!", "'", "(", ")", " ", "<", ">", '"', "=", "\\", "/", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "*"
+    delimiters = ".", ",", ";", ":", "«", "»", "-", "?", "!", "'", "(", ")", " ", "<", ">", '"', "=", "\\", "/", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "*", "#"
     regexPattern = '|'.join(map(re.escape, delimiters))
     countLines = 0
     for line in s:
@@ -55,6 +55,7 @@ for fname in os.listdir('tolstoy'):
     corr = open('D:\Downloads\\' + fname[0:5:1] + '-corr' + '.html', 'w', encoding = 'utf-8')
     corr.write(new_f)
     corr.close()
+  changes.close()
 
 
 
