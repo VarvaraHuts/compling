@@ -1,0 +1,127 @@
+import socket
+
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(('www.py4inf.com', 80))
+mysock.send('GET http://data.pr4e.org/intro-short.txt HTTP/1.0\n\n'.encode())
+
+while True:
+    data = mysock.recv(512)
+    if ( len(data) < 1 ) :
+        break
+    print (data);
+
+mysock.close()
+
+
+
+import urllib
+from BeautifulSoup import *
+
+url = 'http://python-data.dr-chuck.net/comments_301873.html'
+html = urllib.urlopen(url).read()
+
+soup = BeautifulSoup(html)
+
+count = 0
+
+tags = soup('span')
+for tag in tags:
+    s = tag.contents[0]
+    count += int(s)
+print (count)
+
+
+
+import urllib
+from BeautifulSoup import *
+
+url = 'http://python-data.dr-chuck.net/known_by_Ashbey.html'
+html = urllib.urlopen(url).read()
+
+soup = BeautifulSoup(html)
+
+tags = soup('a')
+
+for tag in tags:
+    links = tag.get('href')
+    print links
+    
+    
+    
+import urllib
+import xml.etree.ElementTree as ET
+
+url = raw_input('Enter location: ')
+print 'Retrieving', url
+uh = urllib.urlopen(url)
+data = uh.read()
+print 'Retrieved',len(data),'characters'
+
+tree = ET.fromstring(data)
+
+comments = tree.findall('comments')
+bigcount = 0
+for comment in comments:
+    for i in range (0,50):
+        count = comment[i].find('count').text
+        i += 1
+        bigcount += int(count)
+    print bigcount
+   
+   
+
+import urllib
+import json
+
+url = raw_input('Enter location: ')
+print 'Retrieving', url
+uh = urllib.urlopen(url)
+data = uh.read()
+print 'Retrieved',len(data),'characters'
+
+info = json.loads(data)
+
+bigcount = 0
+
+for item in info["comments"]:
+    bigcount += item['count']
+print bigcount
+
+
+
+import urllib
+import json
+
+# serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
+serviceurl = 'http://python-data.dr-chuck.net/geojson?'
+
+while True:
+    address = raw_input('Enter location: ')
+    if len(address) < 1 : break
+
+    url = serviceurl + urllib.urlencode({'sensor':'false', 'address': address})
+    print 'Retrieving', url
+    uh = urllib.urlopen(url)
+    data = uh.read()
+    print 'Retrieved',len(data),'characters'
+
+    try: js = json.loads(str(data))
+    except: js = None
+    if 'status' not in js or js['status'] != 'OK':
+        print '==== Failure To Retrieve ===='
+        print data
+        continue
+
+    print json.dumps(js, indent=4)
+
+    lat = js["results"][0]["geometry"]["location"]["lat"]
+    lng = js["results"][0]["geometry"]["location"]["lng"]
+    print 'lat',lat,'lng',lng
+    location = js['results'][0]['formatted_address']
+    print location5
+
+
+    
+
+    
+    
