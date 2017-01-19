@@ -1,9 +1,9 @@
 f = open('1.txt')
 f = f.read()
 words = f.split()
-countwords = 0
+count_words = 0
 for word in words:
     letter = word[0]
     if letter.isupper():
-        countwords += 1
-print (countwords)
+        count_words += 1
+print (count_words)
