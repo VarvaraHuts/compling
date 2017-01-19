@@ -31,14 +31,14 @@ print ('Average spam confidence: ' + str(res))
 fh = open('1.txt')
 fh = fh.read()
 fh = fh.split( )
-lst = []
+lst1 = []
 for word in fh:
-    if word not in lst:
-        lst.append(word)
-    if word in lst:
+    if word not in lst1:
+        lst1.append(word)
+    if word in lst1:
         continue
-lst.sort()
-print (lst)
+lst1.sort()
+print (lst1)
 
 fname = raw_input('Enter file name: ')
 fh = open(fname)
