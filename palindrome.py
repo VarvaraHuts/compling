@@ -8,13 +8,10 @@ while True:
             a = '+ palyndrome'
         else:
             a = '- palyndrome'
-    if s.endswith ('ed'):
-        b = '+ verb'
-    else:
-        b = '- verb'
-    f.write(s + ',   ' + str(len(s)) + ',   ' + a + ',   ' + b + '\n')
+    f.write(s + ',   ' + str(len(s)) + ',   ' + a + '\n')
     s = input ()
 f.close()
+
 
 
 
