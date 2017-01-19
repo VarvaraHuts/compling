@@ -9,6 +9,5 @@ def lang(s):
         else:
             print ('yes')
     return
-
 lang(s)
 
