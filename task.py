@@ -22,14 +22,15 @@ for link in links:
             words.append(item)
     dic = {}
     for word in words:
-        word = word.strip(',.:;"?!.«&<>/()''abcdefghijklmopqrstuvwxyz')
+        word = word.strip(',.:;"?!.«»&<>/-=_()abcdefghijklmnopqrstuvwxyz')
         if word not in dic:
             dic[word] = 1
-        if word in dic:
+        else:
             dic[word] += 1
     for key, value in sorted(dic.items()):
         print (key + ' ' + str(value))
-    
+
+
         
     
 
