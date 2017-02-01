@@ -44,6 +44,25 @@ for word in words:
         res = re.search (r, word)
         print (res.group(1))
 
+import re
+f = open ('wwww.txt', 'r', encoding = 'utf-8')
+f = f.read()
+f = f.lower()
+res = re.findall('откры.+?\s', f)
+print (res)
+
+import re
+f = open ('Штутгарт.html', 'r', encoding = 'utf-8')
+f = f.read()
+res = str(re.findall('<a href="/wiki/UTC.+</a>', f))
+res1 = str(re.findall('title=".+?"', res))
+res2 = re.findall('".+?"', res1)
+print (res2)
+
+import re
+s = 'кот'
+res = re.sub('[о]', 'и', s)
+print (s)
 
 
 
