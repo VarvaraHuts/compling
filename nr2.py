@@ -4,7 +4,7 @@ import re
 
 user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
 
-url = 'http://nr2.lt/blogs/Igor_Jakovenko/Petr-Tolstoy-sovershil-nacistskiy-kaming-aut-124626.html'
+url = 'http://nr2.lt/blogs/Newsroom_Vilnius/Novyy-perl-shkolnogo-obrazovaniya-v-RF-124953.html'
 headers={'User-Agent':user_agent,} 
 
 request = urllib.request.Request(url,None,headers) 
