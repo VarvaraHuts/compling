@@ -3,7 +3,7 @@ string = string.read()
 
 automata = [(1, {"other":1, "U":2, "Ú":2, "T":2, "K":2, "R":2, "É":2, "I":2, "N":2, "<":3, " ":21}),
             (2, {"eps":1}),
-            (3, {"i":4, "s":11, "other":20}),
+            (3, {"i":4, "s":11, "h":25, "other":20}),
             (4, {">":22, "other":20}),
             (5, {" ":22, "\n":22, "other":5, "m":6, "a":6, "n":6, "k":6, "u":6, "w":6, "p":6, "í":6, "š":6,
                 "i":6, "l":6, "ḫ":6, "z":6, "d":6, "e":6, "t":6, "r":6, "á":6, "Š":7, "I":7, "A":7, "<":8}),
@@ -25,7 +25,10 @@ automata = [(1, {"other":1, "U":2, "Ú":2, "T":2, "K":2, "R":2, "É":2, "I":2, "
             (21, {"eps":1}),
             (22, {"eps":5}),
             (23, {"eps":14}),
-            (24, {">":23, "other":24, "/":16})]
+            (24, {">":23, "other":24, "/":16}),
+            (25, {'e':26, 'other':20}),(26, {'a':27, 'other':20}), (27, {'d':28, 'other':20}), (28, {'>':29, 'other':20}),
+            (29, {'<':30, 'other':29}), (30, {'/':31, 'other':29}), (31, {'h':32, 'other':29}), (32, {'e':33, 'other':29}),
+            (33, {'a':34, 'other':29}), (34, {'d':35, 'other':29}), (35, {'>':1, 'other':29})]
 
 word = [["",""]]
 index = []
@@ -62,11 +65,11 @@ def handle_state(cur_state, cur_symbol):
             appendSymbol(cur_symbol, "shumer")
         if cur_state == 15 and string[cur_symbol] == "d":
             appendSymbol(cur_symbol, "hittite")
-        if cur_state == 22 and word[len( word) - 1][0] != "":
+        if cur_state == 22 and word[len( word) - 1][1] != "":
             word.append(["", ""])
-        if cur_state == 23 and word[len( word) - 1][0] != "":
+        if cur_state == 23 and word[len( word) - 1][1] != "":
             word.append(["", ""])
-        if cur_state == 24 and word[len( word) - 1][0] != "":
+        if cur_state == 24 and word[len( word) - 1][1] != "":
             word.append(["", ""])
 
 cur_state = 1
@@ -88,4 +91,4 @@ while cur_symbol < len(string):
         handle_state(cur_state, cur_symbol)
         cur_symbol += 1
 
-print(word)
+print (word)
