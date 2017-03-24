@@ -15,7 +15,7 @@ automata = [(1, {"other":1, "U":2, "Ú":2, "T":2, "K":2, "R":2, "É":2, "I":2, "
             (11, {'u':12, 'other':20}),
             (12, {'p':13, 'other':20}),
             (13, {'>':23, 'other':20}),
-            (14, {" ":23, "\n":23, "other":14, 'd':15, "L":15, "Ú":15, "M":15, "E":15, "S":15, "<":24}),
+            (14, {" ":23, "\n":23, "other":14, 'd':15, "L":15, "Ú":15, "M":15, "E":15, "Š":15, "<":24}),
             (15, {"eps":14}),
             (16, {'s':17, "other":24}),
             (17, {'u':18, "other":24}),
@@ -41,17 +41,23 @@ def appendSymbol(symbol, lang):
 
 def handle_state(cur_state, cur_symbol):
         if cur_state == 1 and string[cur_symbol] == "-":
-            word[len(word) - 1][0] += string[cur_symbol]
+            if cur_symbol not in index:
+                index.append(cur_symbol)
+                word[len(word) - 1][0] += string[cur_symbol]
         if cur_state == 2:
             appendSymbol(cur_symbol, "shumer")
         if cur_state == 5 and string[cur_symbol] == "-":
-            word[len(word) - 1][0] += string[cur_symbol]
+            if cur_symbol not in index:
+                index.append(cur_symbol)
+                word[len(word) - 1][0] += string[cur_symbol]
         if cur_state == 6:
             appendSymbol(cur_symbol, "hittite")
         if cur_state == 7:
             appendSymbol(cur_symbol, "akkad")
         if cur_state == 14 and string[cur_symbol] == "-":
-            word[len(word) - 1][0] += string[cur_symbol]
+            if cur_symbol not in index:
+                index.append(cur_symbol)
+                word[len(word) - 1][0] += string[cur_symbol]
         if cur_state == 15 and string[cur_symbol] != "d":
             appendSymbol(cur_symbol, "shumer")
         if cur_state == 15 and string[cur_symbol] == "d":
