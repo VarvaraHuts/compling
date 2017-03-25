@@ -34,13 +34,16 @@ word = [["",""]]
 index = []
 
 def appendSymbol(symbol, lang):
-    index.append(symbol)
     if word[len(word) - 1][1] == "":
         word[len(word) - 1][1] = lang
     if word[len(word) - 1][1] == lang:
-        word[len(word) - 1][0] += string[symbol]
+        if symbol not in index:
+            index.append(symbol)
+            word[len(word) - 1][0] += string[symbol]
     else:
-        word.append([string[symbol], lang])
+        if symbol not in index:
+            index.append(symbol)
+            word.append([string[symbol], lang])
 
 def handle_state(cur_state, cur_symbol):
         if cur_state == 1 and string[cur_symbol] == "-":
@@ -91,4 +94,69 @@ while cur_symbol < len(string):
         handle_state(cur_state, cur_symbol)
         cur_symbol += 1
 
-print (word)
+words_lang = []
+for w in word:
+    for x in range(len(w[0])):
+        words_lang.append(w[1])
+
+symb_lang = [""] * len(string)
+cur_index = 0
+for i in range(len(string)):
+    if i not in index:
+        symb_lang[i] = "other"
+    else:
+        symb_lang[i] = words_lang[cur_index]
+        cur_index += 1
+
+all_words = []
+for i in range(len(symb_lang)):
+    if i == 0 or symb_lang[i] != symb_lang[i-1] or string[i] == '<':
+        all_words.append([string[i], symb_lang[i]])
+    elif i > 0 and string[i-1] == '>':
+        all_words.append([string[i], symb_lang[i]])
+    else:
+        all_words[len(all_words)-1][0] += string[i]
+
+cur_words = []
+temp = []
+sup = []
+toAddTemp = False
+toAddSup = False
+superscript = False
+
+for w in all_words:
+    if superscript:
+        sup.append(w)
+        if w[0] == "</sup>":
+            superscript = False
+            if toAddSup:
+                temp.extend(sup)
+                toAddSup = False
+            sup = []
+        elif w[1] != "other":
+            toAddSup = True
+            toAddTemp = True
+    elif w[1] != "other":
+        if toAddTemp:
+            cur_words.extend(temp)
+            toAddTemp = False
+            cur_words.append(w)
+        elif len(cur_words) > 0 and cur_words[len(cur_words) - 1][1] == w[1]:
+            cur_words[len(cur_words) - 1][0] += w[0]
+        else:
+            cur_words.extend(temp)
+            cur_words.append(w)
+        temp = []
+    elif w[0] == "<sup>":
+        superscript = True
+        sup.append(w)
+    elif w[0] == ' ' or w[0][0] == '\n':
+        toAddTemp = True
+        temp.append(w)
+    elif w[0][0] == '<':
+        temp.append(w)
+
+cur_words.extend(temp)
+for w in cur_words:
+    if w[1] != "other":
+        print(w)
