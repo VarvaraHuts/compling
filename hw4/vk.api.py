@@ -34,6 +34,23 @@ for x in id_arr:
         except:
             pass
 f.close()
-                
+
+a = open('posts.csv', 'w', encoding = 'Windows-1251')
+z = open('comments.csv', 'w', encoding = 'Windows-1251')
+
+b = open('posts.txt', 'r', encoding = 'utf-8')
+lines = b.readlines()
+for line in lines:
+    line = line.replace('<br>', '')
+    words = line.split()
+    a.write(str(len(words)) + '\n')
+a.close()
+
+v = open('comments.txt', 'r', encoding = 'utf-8')
+lines = v.readlines()
+for line in lines:
+    words = line.split()
+    z.write(str(len(words)) + '\n')
+z.close()
         
 
