@@ -5,12 +5,10 @@ import json
 import sys
 
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-id_arr = []
-
 
 def write_vk_info_to_text_file(filename, url, count, is_post):
     ids = []
-    s = open(filename, 'w', encoding='utf-8')
+    s = open(filename, 'a', encoding='utf-8')
     for i in range(count):
         url_extended = url + str(i)
         try:
@@ -33,8 +31,8 @@ def write_vk_info_to_text_file(filename, url, count, is_post):
 
 
 def write_from_txt_to_csv(filename_txt, filename_csv, is_post):
-    a = open(filename_csv, 'a', encoding='Windows-1251')
-    b = open(filename_txt, 'a', encoding='utf-8')
+    a = open(filename_csv, 'w', encoding='Windows-1251')
+    b = open(filename_txt, 'r', encoding='utf-8')
     lines = b.readlines()
     for line in lines:
         if is_post:
@@ -58,4 +56,5 @@ if __name__ == "__main__":
                               False)
 
     write_from_txt_to_csv('posts.txt', 'posts.csv', True)
-    write_from_txt_to_csv('comments.txt', 'comments.csv', True)
+    write_from_txt_to_csv('comments.txt', 'comments.csv', False)
+
