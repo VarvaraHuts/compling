@@ -23,6 +23,28 @@ def write_vk_info_to_text_file(filename, url, count, is_post):
                 for k in range(1, 10):
                     text_com = data['response'][k]['text']
                     s.write(text_com + '\n')
+                    
+                    ### информация про пользователей, написавших комментарии (посты публикует только группа)
+                    z = open('users_info.txt', 'a', encoding = 'utf-8')
+                    id_user = data['response'][k]['from_id']
+                    url_user = 'https://api.vk.com/method/users.get?user_ids=' + str(id_user) + '&fields=bdate,city'
+                    res_user = urllib.request.urlopen(url_user).read().decode('utf-8').translate(non_bmp_map)
+                    data_user = json.loads(res_user)
+                    city = data_user['response'][0]['city']
+                    bdate = data_user['response'][0]['bdate']
+                    if len(bdate) > 5:
+                        byear = int(bdate[-4:-1] + bdate[-1])
+                        bmonth = re.findall("\.[0-9]+\.", bdate)
+                        for element in bmonth:
+                            bmonth = int(element.replace(".", ""))
+                        if bmonth > 4:
+                            age = 2016 - byear
+                        else:
+                            age = 2017 - byear
+                        z.write(str(id_user) + '    ' + str(city) + '   ' + str(age) + '\n')
+                    else:
+                        z.write(str(id_user) + '    ' + str(city) + '\n')
+                    z.close()
         except:
             pass
 
