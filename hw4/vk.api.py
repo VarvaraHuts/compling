@@ -3,6 +3,7 @@
 import urllib.request
 import json
 import sys
+import re
 
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 
