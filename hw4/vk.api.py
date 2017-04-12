@@ -25,7 +25,7 @@ def write_vk_info_to_text_file(filename, url, count, is_post):
                     s.write(text_com + '\n')
                     
                     ### информация про пользователей, написавших комментарии (посты публикует только группа)
-                    z = open('users_info.txt', 'a', encoding = 'utf-8')
+                    z = open('users_info.csv', 'a', encoding = 'utf-8')
                     id_user = data['response'][k]['from_id']
                     url_user = 'https://api.vk.com/method/users.get?user_ids=' + str(id_user) + '&fields=bdate,city'
                     res_user = urllib.request.urlopen(url_user).read().decode('utf-8').translate(non_bmp_map)
@@ -41,9 +41,9 @@ def write_vk_info_to_text_file(filename, url, count, is_post):
                             age = 2016 - byear
                         else:
                             age = 2017 - byear
-                        z.write(str(id_user) + '    ' + str(city) + '   ' + str(age) + '\n')
+                        z.write(str(id_user) + ';' + str(city) + ';' + str(age) + '\n')
                     else:
-                        z.write(str(id_user) + '    ' + str(city) + '\n')
+                        z.write(str(id_user) + ';' + str(city) + '\n')
                     z.close()
         except:
             pass
