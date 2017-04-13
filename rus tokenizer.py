@@ -2,7 +2,7 @@ import re
 
 s = open("tokens.txt", "w", encoding="utf-8")
 
-f = open("ann_1500_1.txt", "r", encoding="utf-8")
+f = open("ann_1500.txt", "r", encoding="utf-8")
 text = f.read()
 tokens = text.split()
 
