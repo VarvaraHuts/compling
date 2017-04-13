@@ -23,6 +23,7 @@ def write_vk_info_to_text_file(filename, url, count, is_post):
             else:
                 for k in range(1, 10):
                     text_com = data['response'][k]['text']
+                    words_com = text_com.split()
                     s.write(text_com + '\n')
                     
                     ### информация про пользователей, написавших комментарии (посты публикует только группа)
@@ -42,7 +43,7 @@ def write_vk_info_to_text_file(filename, url, count, is_post):
                             age = 2016 - byear
                         else:
                             age = 2017 - byear
-                        z.write(str(id_user) + ';' + str(city) + ';' + str(age) + '\n')
+                        z.write(str(id_user) + ';' + str(city) + ';' + str(age) + ';' + str(len(words_com)) + '\n')
                     else:
                         z.write(str(id_user) + ';' + str(city) + '\n')
                     z.close()
