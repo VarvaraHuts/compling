@@ -2,7 +2,7 @@ import random
 index = [0, 1, 2, 3]
 
 def split_words():
-    f = open ('дз1. словарь.txt', encoding = 'utf-8')
+    f = open ('rand sent dic.txt', encoding = 'utf-8')
     f = f.read()
     words = f.split()
     return(words)
