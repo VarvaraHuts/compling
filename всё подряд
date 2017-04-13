@@ -26,7 +26,7 @@ for line in fh:
         numbr = float(line[20:26])
         snumbr += numbr
 res = snumbr / count
-print ('Average spam confidence: ' + str(res))
+print ('Average spam confidence:  ' + str(res))
 
 fh = open('1.txt')
 fh = fh.read()
