@@ -1,5 +1,5 @@
 def openFile():
-    f = open('транслитерация грузиницы. текст.txt', 'r', encoding = 'utf-8')
+    f = open('georg text.txt', 'r', encoding = 'utf-8')
     f1 = f.read()
     f.close()
     return(f1)
