@@ -1,3 +1,5 @@
+#замена неправильно распознанных символов на правильные (кириллица vs. латиница) 
+
 import re
 import os
 changes = open('changes.txt', 'w', encoding = 'utf-8')
